@@ -9,16 +9,35 @@ const initialValue = {
   zip: "",
 };
 
+const useLocalStorage = (key, initialValue) => {
+  const [value, setValue] = useState(() => {
+    if (localStorage.getItem(key)) {
+      return(JSON.parse(localStorage.getItem(key)))
+    }
+    localStorage.setItem(key, JSON.stringify(initialValue))
+    return(initialValue)
+  })
+
+  const setLocalStorageValue = (value) => {
+    setValue(value)
+    localStorage.setItem(key, JSON.stringify(value))
+  }
+  return [value, setLocalStorageValue]
+}
+
 // This form should be handled by a "useForm" custom hook
 // Build out the logic needed for a form custom hook (see the useForm.js file)
 // and replace the necessary stateful logic from CheckoutForm with the hook
 
 const CheckoutForm = (props) => {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-  const [values, setValues] = useState(initialValue);
+  const [values, setValues] = useLocalStorage('Form', initialValue);
 
   const handleChanges = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
+    setValues({ 
+      ...values, 
+      [e.target.name]: e.target.value 
+    });
   };
 
   const handleSubmit = (e) => {
