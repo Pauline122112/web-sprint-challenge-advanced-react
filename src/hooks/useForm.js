@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+//created a react localStorage to see information on console
+
 const useLocalStorage = (key, initialValue) => {
 	const [value, setValue] = useState(() => {
 		if (localStorage.getItem(key)) {
@@ -16,9 +18,10 @@ const useLocalStorage = (key, initialValue) => {
 	return [value, setLocalStorageValue];
 };
 
+//useForm custom hook that will initiate success message on checkout form
 const useForm = (initValues) => {
-    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-	const [values, setValues] = useLocalStorage("form", initValues)
+	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+	const [values, setValues] = useLocalStorage("form", initValues);
 
 	const handleChanges = (e) => {
 		setValues({
@@ -27,10 +30,10 @@ const useForm = (initValues) => {
 		});
 	};
 
-    const handleSubmit = (e) => {
-				e.preventDefault();
-				setShowSuccessMessage(true);
-			};
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		setShowSuccessMessage(true);
+	};
 
 	const clearForm = (e) => {
 		e.preventDefault();

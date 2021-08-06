@@ -1,25 +1,23 @@
 import React from "react";
 import useForm from "../hooks/useForm";
 
-
 const initialValue = {
-  firstName: "",
-  lastName: "",
-  address: "",
-  city: "",
-  state: "",
-  zip: "",
+	firstName: "",
+	lastName: "",
+	address: "",
+	city: "",
+	state: "",
+	zip: "",
 };
-
 
 //created const checkout form- initialized value from useForm file
 // "useForm" custom hook is in useform file
 const CheckoutForm = (props) => {
-  const [values, handleChanges, showSuccessMessage, handleSubmit] = useForm(initialValue)
+	const [values, handleChanges, showSuccessMessage, handleSubmit] =
+		useForm(initialValue);
 
-
-//refactored some of the divs.
-  return (
+	//refactored some of the divs and added a user-form div
+	return (
 		<>
 			<div className="user-form">
 				<form onSubmit={handleSubmit}>
@@ -86,5 +84,3 @@ const CheckoutForm = (props) => {
 };
 
 export default CheckoutForm;
-
-// and replace the necessary stateful logic from CheckoutForm with the hook
