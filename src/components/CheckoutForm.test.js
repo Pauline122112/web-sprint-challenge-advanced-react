@@ -7,8 +7,7 @@ import userEvent from "@testing-library/user-event";
 
 test("form header renders", () => {
     render (<CheckoutForm />)
-    // const header = screen.getByLabelText('user-form')
-    // expect(header).toBeTruthy()
+    
 });
 
 test("form shows success message on submit with form details", () => {
@@ -21,8 +20,7 @@ render(<CheckoutForm />);
 	const stateInput = screen.getByLabelText(/State/i)
 	const zipCodeInput = screen.getByLabelText(/Zip/i)
     const button = screen.getByRole('button')
-    const confirm = screen.getByTestId('success message')
-
+    
     userEvent.type(firstNameInput, "Pauline")
     userEvent.type(lastNameInput, "Stokes")
     userEvent.type(addressInput, "33B Gladstone road")
@@ -31,5 +29,6 @@ render(<CheckoutForm />);
     userEvent.type(zipCodeInput, '63368')
     userEvent.click(button)
     
+    const confirm = screen.getByTestId('successMessage')
     expect(confirm).toBeInTheDocument()
 });
