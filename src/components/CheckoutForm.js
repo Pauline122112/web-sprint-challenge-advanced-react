@@ -14,13 +14,8 @@ const initialValue = {
 
 
 const CheckoutForm = (props) => {
-  const [values, handleChanges, showSuccessMessage] = useForm(initialValue)
+  const [values, handleChanges, showSuccessMessage, handleSubmit] = useForm(initialValue)
 
-    const handleSubmit = (e) => {
-			e.preventDefault();
-			alert(
-				`${values.firstName} ${values.lastName} ${values.address} ${values.city} ${values.state} ${values.zip}`)
-		}
 
   
   return (
