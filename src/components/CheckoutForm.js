@@ -14,10 +14,18 @@ const initialValue = {
 
 
 const CheckoutForm = (props) => {
-  const [values, handleChanges, handleSubmit, showSuccessMessage] = useForm(initialValue)
+  const [values, handleChanges, showSuccessMessage] = useForm(initialValue)
+
+    const handleSubmit = (e) => {
+			e.preventDefault();
+			alert(
+				`${values.firstName} ${values.lastName} ${values.address} ${values.city} ${values.state} ${values.zip}`)
+		}
+
   
   return (
     <>
+    <div className="user-form">
       <form onSubmit={handleSubmit}>
         <h2>Checkout Form</h2>
         <label>
@@ -76,6 +84,7 @@ const CheckoutForm = (props) => {
           </p>
         </div>
       )}
+      </div>
     </>
   );
 };
