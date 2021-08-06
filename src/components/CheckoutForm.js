@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import useForm from "../hooks/useForm";
 
 const initialValue = {
   firstName: "",
@@ -9,21 +10,7 @@ const initialValue = {
   zip: "",
 };
 
-const useLocalStorage = (key, initialValue) => {
-  const [value, setValue] = useState(() => {
-    if (localStorage.getItem(key)) {
-      return(JSON.parse(localStorage.getItem(key)))
-    }
-    localStorage.setItem(key, JSON.stringify(initialValue))
-    return(initialValue)
-  })
 
-  const setLocalStorageValue = (value) => {
-    setValue(value)
-    localStorage.setItem(key, JSON.stringify(value))
-  }
-  return [value, setLocalStorageValue]
-}
 
 // This form should be handled by a "useForm" custom hook
 // Build out the logic needed for a form custom hook (see the useForm.js file)
@@ -31,7 +18,7 @@ const useLocalStorage = (key, initialValue) => {
 
 const CheckoutForm = (props) => {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-  const [values, setValues] = useLocalStorage('Form', initialValue);
+  const [values, setValues] = useState( initialValue);
 
   const handleChanges = (e) => {
     setValues({ 
