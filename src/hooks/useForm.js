@@ -19,6 +19,7 @@ const useLocalStorage = (key, initialValue) => {
 };
 
 const useForm = (initValues) => {
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 	const [values, setValues] = useLocalStorage("form", initValues);
 
 	const handleChanges = (e) => {
@@ -28,12 +29,17 @@ const useForm = (initValues) => {
 		});
 	};
 
+    const handleSubmit = (e) => {
+				e.preventDefault();
+				setShowSuccessMessage(true);
+			};
+
 	const clearForm = (e) => {
 		e.preventDefault();
 		setValues(initValues);
 	};
 
-	return [values, handleChanges, clearForm];
+	return [values, handleChanges, handleSubmit, clearForm, showSuccessMessage];
 };
 
 export default useForm;
